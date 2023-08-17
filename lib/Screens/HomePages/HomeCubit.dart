@@ -474,10 +474,12 @@ class CubitApp extends Cubit<SocialState> {
     });
   }
 
-  void PostsComment(String PostUid, String text,String? MakeCommentImage) async {
+  void PostsComment(
+      String PostUid, String text, String? MakeCommentImage) async {
     emit(MakeCommentLoading());
 
-    CommentsModel model = CommentsModel(commentText: text , MakeCommentImage: MakeCommentImage);
+    CommentsModel model =
+        CommentsModel(commentText: text, MakeCommentImage: MakeCommentImage);
 
     CollectionReference commentsCollection = FirebaseFirestore.instance
         .collection('Posts')
@@ -494,7 +496,6 @@ class CubitApp extends Cubit<SocialState> {
       }).catchError((error) {
         emit(MakeLikesError());
       });
-
     }).catchError((error) {
       emit(MakeLikesError());
     });

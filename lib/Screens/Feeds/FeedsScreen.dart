@@ -320,6 +320,55 @@ class feedsScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Container(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.grey, width: 1)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              controller: TextController,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'type your message...',
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 40,
+                            width: 70,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            decoration: BoxDecoration(
+                                color: Colors.lightBlue,
+                                borderRadius: BorderRadius.circular(30)),
+                            child: MaterialButton(
+                              onPressed: () {
+                                final now = DateTime.now();
+                                // String formattedDateTime =
+                                //     DateFormat('yyyy-MM-dd HH:mm').format(now);
+                                CubitApp.get(context).PostsComment(
+                                    CubitApp.get(context).PostId[index],
+                                    TextController.text,
+                                    CubitApp.get(context).Model?.Image);
+                                TextController.text = '';
+                              },
+                              child: Icon(
+                                Icons.send,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
                 Expanded(
                   child: ListView.separated(
                       physics: BouncingScrollPhysics(),
@@ -329,52 +378,6 @@ class feedsScreen extends StatelessWidget {
                             height: 10,
                           ),
                       itemCount: CubitApp.get(context).Comments.length),
-                ),
-                Container(
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.grey, width: 1)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextFormField(
-                            controller: TextController,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'type your message...',
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 40,
-                          width: 70,
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          decoration: BoxDecoration(
-                              color: Colors.lightBlue,
-                              borderRadius: BorderRadius.circular(30)),
-                          child: MaterialButton(
-                            onPressed: () {
-                              final now = DateTime.now();
-                              // String formattedDateTime =
-                              //     DateFormat('yyyy-MM-dd HH:mm').format(now);
-                              CubitApp.get(context).PostsComment(
-                                  CubitApp.get(context).PostId[index],
-                                  TextController.text,
-                                  CubitApp.get(context).Model?.Image);
-                              TextController.text = '';
-                            },
-                            child: Icon(
-                              Icons.send,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                 ),
               ],
             ),
