@@ -102,3 +102,5 @@ class GetMessageError extends SocialState {}
 class GetCommentsSuccess extends SocialState {}
 
 class GetCommentsLoading extends SocialState {}
+
+class UpdatePostImage extends SocialState {}

@@ -18,7 +18,7 @@ class NewPost extends StatelessWidget {
       listener: (context, State) {
         if (State is CreatePostDataSuccess) {
           CubitApp.get(context).textController.text = '';
-          CubitApp.get(context).PostImage = null;
+          // CubitApp.get(context).PostImage = null;
         }
       },
       builder: (context, State) {

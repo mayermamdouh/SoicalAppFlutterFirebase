@@ -165,6 +165,8 @@ class CubitApp extends Cubit<SocialState> {
           phone: phone,
           Image: value,
         );
+        UpdatePostData(Image: value, name: name);
+        emit(UpdatePostImage());
       }).catchError((error) {
         emit(UploadProfileImageError());
       });
@@ -201,6 +203,8 @@ class CubitApp extends Cubit<SocialState> {
           phone: phone,
           cover: value,
         );
+        // UpdatePostData(Image: value);
+        // emit(UpdatePostImage());
       }).catchError((error) {
         emit(UploadcoverImageError());
       });
@@ -234,6 +238,9 @@ class CubitApp extends Cubit<SocialState> {
         .doc(Model?.uId)
         .update(modelUser.toMap())
         .then((value) {
+      // UpdatePostData(
+      //   name: name,
+      // );
       GetUserData();
     }).catchError((error) {
       emit(UpdateUserDataError());
@@ -346,9 +353,8 @@ class CubitApp extends Cubit<SocialState> {
         LikesNum.add(0);
         CommentsNum.add(0);
         // Initialize like count with 0
-        print('Posts //////');
-        print(Posts);
-
+        print('/////////////////////////////////');
+        print(Posts[0].PostImage);
         postDoc.reference
             .collection('Likes')
             .snapshots()
@@ -364,7 +370,6 @@ class CubitApp extends Cubit<SocialState> {
         });
         emit(GetPostsSuccess());
       });
-      print(PostId);
     });
   }
 
@@ -518,6 +523,22 @@ class CubitApp extends Cubit<SocialState> {
       });
       emit(GetCommentsSuccess());
       print(Comments);
+    });
+  }
+
+  void UpdatePostData({String? name, String? Image}) {
+    FirebaseFirestore.instance
+        .collection('Posts')
+        .where('uId', isEqualTo: Model?.uId)
+        .get()
+        .then((value) {
+      value.docs.forEach((doc) {
+        // Update each post's name and image
+        doc.reference.update({
+          'name': name,
+          'Image': Image,
+        });
+      });
     });
   }
 }

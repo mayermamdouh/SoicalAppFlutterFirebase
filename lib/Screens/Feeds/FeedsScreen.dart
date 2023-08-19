@@ -75,7 +75,7 @@ class feedsScreen extends StatelessWidget {
     );
   }
 
-  Widget BuildPostItem(PostUserModel model, context, index) => Card(
+  Widget BuildPostItem(PostUserModel mod, context, index) => Card(
         elevation: 3,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Padding(
@@ -87,7 +87,7 @@ class feedsScreen extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 25,
-                    backgroundImage: NetworkImage('${model.Image}'),
+                    backgroundImage: NetworkImage('${mod.Image}'),
                   ),
                   SizedBox(
                     width: 20,
@@ -99,7 +99,7 @@ class feedsScreen extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              '${model.name}',
+                              '${mod.name}',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
@@ -117,7 +117,7 @@ class feedsScreen extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          '${model.DataTime}',
+                          '${mod.DataTime}',
                           style: TextStyle(color: Colors.black45, fontSize: 10),
                         ),
                       ],
@@ -135,7 +135,7 @@ class feedsScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                '${model.text}',
+                '${mod.text}',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   height: 1.80,
@@ -167,7 +167,7 @@ class feedsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              if (model.PostImage != '')
+              if (mod.PostImage != '')
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Container(
@@ -176,7 +176,7 @@ class feedsScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         image: DecorationImage(
-                          image: NetworkImage('${model.Image}'),
+                          image: NetworkImage('${mod.PostImage}'),
                           fit: BoxFit.cover,
                         ),
                       )),

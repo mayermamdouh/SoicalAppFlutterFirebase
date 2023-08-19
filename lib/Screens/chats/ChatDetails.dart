@@ -34,7 +34,7 @@ class ChatDetails extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundImage: NetworkImage('${usermodel?.Image}'),
+                    backgroundImage: NetworkImage('${usermodel?.Image }'),
                   ),
                   SizedBox(
                     width: 10,
@@ -47,7 +47,7 @@ class ChatDetails extends StatelessWidget {
               ),
             ),
             body: ConditionalBuilder(
-                condition: CubitApp.get(context).messages.length > 0,
+                condition: CubitApp.get(context).messages.length >= 0,
                 builder: (context) => Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Column(
@@ -98,13 +98,13 @@ class ChatDetails extends StatelessWidget {
                                     child: MaterialButton(
                                       onPressed: () {
                                         final now = DateTime.now();
-                                        String formattedDateTime =
-                                            DateFormat('yyyy-MM-dd HH:mm')
-                                                .format(now);
+                                        // String formattedDateTime =
+                                            // DateFormat('yyyy-MM-dd HH:mm')
+                                            //     .format(now);
                                         CubitApp.get(context).SendMessage(
                                           receiveId: usermodel!.uId!,
                                           text: TextController.text,
-                                          dataTime: formattedDateTime,
+                                          dataTime: now.toString(),
                                         );
                                       },
                                       child: Icon(
